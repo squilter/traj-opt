@@ -14,10 +14,8 @@ def snap(p):
 res = minimize(snap,
                np.zeros(5), # initial guess
                method='slsqp',
-               constraints = [pos_constraint(4, 0), # from position 4 to 5 in 1 second. Start and end with zero velocity.
-                              pos_constraint(5, 1),
-                              vel_zero_constraint(0),
-                              vel_zero_constraint(1)],
+               constraints = [constraint(5, 0, pos=4, vel=0), # from position 4 to 5 in 1 second. Start and end with zero velocity.
+                              constraint(5, 1, pos=5, vel=0)],
                options={'disp': True}).x
 
 print(res)
